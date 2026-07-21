@@ -1,0 +1,31 @@
+/* =========================================================================
+   ROFI MASTER THEME & PROPERTIES
+   Single Source of Truth for Launcher Customization.
+   
+   To change colors, sizes, or fonts, edit the variables in this file.
+   ========================================================================= */
+
+* {
+    /* ── Window Dimensions & Layout ────────────────────────────────────────── */
+    window-width:         620px;
+    window-height:        420px;
+    window-padding:       16px;
+    border-radius:        8px;
+    border-thickness:     2px;
+
+    /* ── Typography & Icons ──────────────────────────────────────────────── */
+    font-name:            "JetBrainsMono Nerd Font 11";
+    icon-size-val:        28px;
+
+    /* ── Color Palette (Solid Colors — No Transparency / Blur) ─────────────── */
+    bg-color:             #006ea8;  /* Solid window background */
+    fg-color:             #abb2bf;  /* Regular text */
+    border-color:         #061844;  /* Thin window border */
+    accent-color:         #56b6c2;  /* Highlights & prompt */
+    prompt-color:         #56b6c2;  /* Prompt label text */
+    search-cursor-color:  #56b6c2;  /* Caret color */
+    placeholder-color:    #5c6370;  /* Search placeholder text */
+    selected-bg:          #ffffff;  /* Highlighted row background */
+    selected-fg:          #56b6c2;  /* Highlighted row text */
+    icon-color:           #56b6c2;  /* Icon tint if applicable */
+}

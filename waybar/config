@@ -1,0 +1,168 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-top": 12,
+  "margin-bottom": -8,
+  "height": 40,
+
+  // ── Modules Layout ───────────────────────────────────────────────
+  "modules-left": [
+    "clock",
+    "custom/volume",
+    "custom/mic",
+    "custom/services",
+    "custom/ip",
+    "hyprland/window"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "custom/disk",
+    "custom/ram",
+    "custom/gpu",
+    "custom/cpu",
+    "custom/bluetooth",
+    "custom/wifi",
+    "custom/power"
+  ],
+
+  // ═══════════════════════════════════════════════════════════════════
+  //  LEFT SIDE MODULES
+  // ═══════════════════════════════════════════════════════════════════
+
+  // ── Clock ────────────────────────────────────────────────────────
+  "clock": {
+    "tooltip-format": "{calendar}",
+    "format-alt": "  {:%a, %d %b %Y}",
+    "format": "  {:%I:%M %p}"
+  },
+
+  // ── Volume ───────────────────────────────────────────────────────
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume-status.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol || kitty -e wpctl status",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  // ── Microphone ───────────────────────────────────────────────────
+  "custom/mic": {
+    "exec": "~/.config/waybar/scripts/mic-status.sh",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-click-right": "pavucontrol || kitty -e wpctl status"
+  },
+
+  // ── Systemd User Services ────────────────────────────────────────
+  "custom/services": {
+    "exec": "~/.config/waybar/scripts/systemd-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e bash -c 'systemctl --user status $(ls ~/.config/systemd/user/*.service 2>/dev/null | xargs -I{} basename {} | tr \"\\n\" \" \"); read -p \"Press Enter to close...\"'"
+  },
+
+  // ── Local IP Address ─────────────────────────────────────────────
+  "custom/ip": {
+    "exec": "~/.config/waybar/scripts/ip-status.sh",
+    "return-type": "json",
+    "interval": 10,
+    "on-click": "~/.config/waybar/scripts/ip-status.sh | jq -r '.text' | wl-copy && notify-send 'IP Copied' 'Local IP copied to clipboard'"
+  },
+
+  // ── Active Window ────────────────────────────────────────────────
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 50,
+    "separate-outputs": true
+  },
+
+  // ═══════════════════════════════════════════════════════════════════
+  //  CENTER MODULES
+  // ═══════════════════════════════════════════════════════════════════
+
+  // ── Workspaces ───────────────────────────────────────────────────
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "sort-by-number": true,
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  },
+
+  // ═══════════════════════════════════════════════════════════════════
+  //  RIGHT SIDE MODULES
+  // ═══════════════════════════════════════════════════════════════════
+
+  // ── Disk ─────────────────────────────────────────────────────────
+  "custom/disk": {
+    "exec": "~/.config/waybar/scripts/disk-status.sh",
+    "return-type": "json",
+    "interval": 10,
+    "on-click": "dolphin ~",
+    "on-click-right": "gnome-disks || kitty -e lsblk -f"
+  },
+
+  // ── RAM ──────────────────────────────────────────────────────────
+  "custom/ram": {
+    "exec": "~/.config/waybar/scripts/ram-status.sh",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "kitty -e btop"
+  },
+
+  // ── GPU Stats ────────────────────────────────────────────────────
+  "custom/gpu": {
+    "exec": "~/.config/waybar/scripts/gpu-status.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "kitty -e nvtop",
+    "on-click-right": "nvidia-settings || kitty -e nvtop"
+  },
+
+  // ── CPU Stats ────────────────────────────────────────────────────
+  "custom/cpu": {
+    "exec": "~/.config/waybar/scripts/cpu-status.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "kitty -e btop",
+    "on-click-right": "mission-center || kitty -e btop"
+  },
+
+  // ── Bluetooth ────────────────────────────────────────────────────
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/scripts/bluetooth-status.sh",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
+    "on-click-right": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
+  },
+
+  // ── Wi-Fi ────────────────────────────────────────────────────────
+  "custom/wifi": {
+    "exec": "~/.config/waybar/scripts/wifi-status.sh",
+    "return-type": "json",
+    "interval": 2,
+    "on-click": "~/.config/waybar/scripts/wifi-menu.sh",
+    "on-click-right": "nmcli radio wifi $(nmcli radio wifi | grep -q enabled && echo off || echo on)"
+  },
+
+  // ── Power ────────────────────────────────────────────────────────
+  "custom/power": {
+    "exec": "~/.config/waybar/scripts/power-status.sh",
+    "return-type": "json",
+    "interval": 30,
+    "on-click": "~/.config/waybar/scripts/powermenu.sh",
+    "on-click-right": "loginctl lock-session"
+  }
+}

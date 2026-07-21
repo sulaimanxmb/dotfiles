@@ -1,0 +1,149 @@
+/* =========================================================================
+   ROFI CONFIGURATION FILE
+   Arch Linux + Hyprland Keyboard-First App Launcher
+   ========================================================================= */
+
+@import "theme.rasi"
+
+configuration {
+    /* ── Core Modes & Behavior ─────────────────────────────────────────────── */
+    modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               " ";
+    display-run:                " ";
+    display-window:             "🪟 ";
+    drun-display-format:        "{icon} {name} <span size='small' alpha='60%'>({generic})</span>";
+    drun-match-fields:          "name,generic,exec,categories,keywords";
+    
+    /* ── Desktop Entry Locations ──────────────────────────────────────────── */
+    drun-categories:            "";
+    drun-show-actions:          false;
+    
+    /* ── Keyboard & Mouse Behavior ────────────────────────────────────────── */
+    me-select-entry:            "";
+    me-accept-entry:            "MousePrimary";
+    hover-select:               true;
+    scroll-method:              0;
+    click-to-exit:              true;
+
+    /* ── Miscellaneous ────────────────────────────────────────────────────── */
+    disable-history:            false;
+    sidebar-mode:               false;
+    steal-focus:                true;
+    font:                       "JetBrainsMono Nerd Font 11";
+}
+
+/* ── Window Layout ───────────────────────────────────────────────────────── */
+window {
+    transparency:               "none";
+    background-color:           @bg-color;
+    text-color:                 @fg-color;
+    border:                     @border-thickness;
+    border-color:               @border-color;
+    border-radius:              @border-radius;
+    width:                      @window-width;
+    height:                     @window-height;
+    padding:                    @window-padding;
+    location:                   center;
+    anchor:                     center;
+    x-offset:                   0px;
+    y-offset:                   0px;
+    enabled:                    true;
+}
+
+/* ── Main Container ──────────────────────────────────────────────────────── */
+mainbox {
+    enabled:                    true;
+    spacing:                    12px;
+    background-color:           transparent;
+    children:                   [ "inputbar", "listview" ];
+}
+
+/* ── Search Bar / Input ──────────────────────────────────────────────────── */
+inputbar {
+    enabled:                    true;
+    spacing:                    8px;
+    padding:                    10px 14px;
+    background-color:           #3b4252;
+    text-color:                 @fg-color;
+    border-radius:              6px;
+    children:                   [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled:                    true;
+    background-color:           transparent;
+    text-color:                 @accent-color;
+    font:                       "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    enabled:                    true;
+    background-color:           transparent;
+    text-color:                 @fg-color;
+    cursor:                     pointer;
+    placeholder:                "Search applications or commands...";
+    placeholder-color:          @placeholder-color;
+}
+
+/* ── Result List ─────────────────────────────────────────────────────────── */
+listview {
+    enabled:                    true;
+    columns:                    1;
+    lines:                      8;
+    cycle:                      true;
+    dynamic:                    true;
+    scrollbar:                  false;
+    layout:                     vertical;
+    reverse:                    false;
+    fixed-height:               true;
+    fixed-columns:              true;
+    spacing:                    4px;
+    background-color:           transparent;
+    text-color:                 @fg-color;
+}
+
+/* ── Result Element Row ──────────────────────────────────────────────────── */
+element {
+    enabled:                    true;
+    spacing:                    12px;
+    padding:                    8px 12px;
+    border-radius:              6px;
+    background-color:           transparent;
+    text-color:                 @fg-color;
+    cursor:                     pointer;
+}
+
+element selected {
+    background-color:           @selected-bg;
+    text-color:                 @selected-fg;
+}
+
+element-icon {
+    background-color:           transparent;
+    text-color:                 inherit;
+    size:                       @icon-size-val;
+    cursor:                     inherit;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    highlight:                  inherit;
+    cursor:                     inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0.0;
+}
+
+/* ── Message / Error Box ─────────────────────────────────────────────────── */
+message {
+    background-color:           transparent;
+    border-radius:              6px;
+}
+
+textbox {
+    padding:                    10px;
+    background-color:           #3b4252;
+    text-color:                 @fg-color;
+    border-radius:              6px;
+}

@@ -1,0 +1,279 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   Waybar CSS — Desktop (Arch + Hyprland)
+   Full redesign with CSS variable theming
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE ONE SECTION TO CHANGE FOR YOUR WALLPAPER / THEME
+   Change @define-color bar-bg to match your wallpaper accent.
+   Box borders, hover backgrounds, and tooltips all derive from this.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@define-color bar-bg       #051843;
+@define-color bar-bg-light #3b4252;
+@define-color bar-border   #051843;
+@define-color hover-bg     #3b4252;
+@define-color tooltip-bg   #282c34;
+@define-color tooltip-border #282c34;
+
+
+/* === Base Waybar Styling ================================================= */
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+}
+
+window#waybar {
+  background: @bar-bg;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  color: #abb2bf;
+  border: 2px solid @bar-border;
+  border-radius: 4px;
+}
+
+
+/* === Workspaces ========================================================== */
+
+#workspaces {
+  background-color: transparent;
+  padding: 0 4px;
+}
+
+#workspaces button {
+  all: initial;
+  min-width: 0;
+  padding: 4px 10px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  background-color: alpha(@bar-bg-light, 0.4);
+  color: #5c6370;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Active workspace */
+#workspaces button.active {
+  color: #282c34;
+  background-color: #56b6c2;
+  border-radius: 4px;
+}
+
+/* Occupied (has windows) but not active */
+#workspaces button.occupied {
+  color: #abb2bf;
+}
+
+/* Empty workspace (persistent, no windows) */
+#workspaces button.persistent {
+  color: #5c6370;
+}
+
+/* Urgent workspace */
+#workspaces button.urgent {
+  color: #282c34;
+  background-color: #e06c75;
+  animation: urgent-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes urgent-pulse {
+  from { background-color: #e06c75; }
+  to   { background-color: #be5046; }
+}
+
+#workspaces button:hover {
+  color: #282c34;
+  background-color: #56b6c2;
+}
+
+
+/* === Active Window ======================================================= */
+
+#window {
+  padding: 4px 12px;
+  margin: 4px 4px;
+  color: #5c6370;
+  font-style: italic;
+  font-size: 12px;
+}
+
+
+/* === Module Container Styling ============================================ */
+/* Every module gets the same box treatment — border matches bar-bg         */
+
+#custom-volume,
+#custom-mic,
+#custom-services,
+#custom-ip,
+#custom-disk,
+#custom-ram,
+#custom-gpu,
+#custom-cpu,
+#custom-bluetooth,
+#custom-wifi,
+#custom-power,
+#clock,
+#tray {
+  padding: 4px 12px;
+  margin: 4px 4px;
+  background-color: alpha(@bar-bg-light, 0.3);
+  border: 2px solid @bar-border;
+  border-radius: 4px;
+}
+
+
+/* === Hover Effects ======================================================= */
+/* Border adapts to bar-bg so wallpaper changes propagate                    */
+
+#custom-volume:hover,
+#custom-mic:hover,
+#custom-services:hover,
+#custom-ip:hover,
+#custom-disk:hover,
+#custom-ram:hover,
+#custom-gpu:hover,
+#custom-cpu:hover,
+#custom-bluetooth:hover,
+#custom-wifi:hover,
+#custom-power:hover,
+#clock:hover,
+#tray:hover {
+  background-color: @hover-bg;
+  border: 2px solid alpha(#56b6c2, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+
+/* === Tooltips ============================================================ */
+/* Tooltip colors also derive from bar-bg                                   */
+
+tooltip {
+  color: #abb2bf;
+  background-color: @tooltip-bg;
+  border: 1px solid @tooltip-border;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+tooltip label {
+  color: #abb2bf;
+  padding: 4px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INDIVIDUAL MODULE COLORS
+   Each icon/text has its own unique color. Change these freely.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 🕒 Clock */
+#clock {
+  color: #e5c07b;
+  font-weight: bold;
+}
+
+/* 🔊 Volume */
+#custom-volume {
+  color: #61afef;
+}
+#custom-volume.muted {
+  color: #e06c75;
+}
+
+/* 🎤 Microphone */
+#custom-mic {
+  color: #56b6c2;
+}
+#custom-mic.muted {
+  color: #e06c75;
+}
+
+/* ⚙ Systemd Services */
+#custom-services {
+  color: #c678dd;
+}
+#custom-services.inactive {
+  color: #5c6370;
+}
+
+/* 🌐 Local IP */
+#custom-ip {
+  color: #98c379;
+}
+#custom-ip.disconnected {
+  color: #e06c75;
+}
+
+/* 💾 Disk */
+#custom-disk {
+  color: #d19a66;
+}
+#custom-disk.critical {
+  color: #e06c75;
+}
+#custom-disk.warning {
+  color: #e5c07b;
+}
+
+/* 🧠 RAM */
+#custom-ram {
+  color: #c678dd;
+}
+#custom-ram.critical {
+  color: #e06c75;
+}
+#custom-ram.warning {
+  color: #e5c07b;
+}
+
+/* 🎮 GPU */
+#custom-gpu {
+  color: #98c379;
+}
+#custom-gpu.critical {
+  color: #e06c75;
+}
+#custom-gpu.warning {
+  color: #e5c07b;
+}
+
+/* 🖥 CPU */
+#custom-cpu {
+  color: #61afef;
+}
+#custom-cpu.critical {
+  color: #e06c75;
+}
+#custom-cpu.warning {
+  color: #e5c07b;
+}
+
+/*  Bluetooth */
+#custom-bluetooth {
+  color: #61afef;
+}
+#custom-bluetooth.connected {
+  color: #61afef;
+}
+#custom-bluetooth.on {
+  color: #5c6370;
+}
+
+/* 📶 Wi-Fi */
+#custom-wifi {
+  color: #98c379;
+}
+#custom-wifi.disconnected {
+  color: #e06c75;
+}
+
+/* ⏻ Power */
+#custom-power {
+  color: #e06c75;
+}
