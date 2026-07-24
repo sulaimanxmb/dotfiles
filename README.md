@@ -4,7 +4,7 @@ My personal configuration files for an Arch Linux desktop environment powered by
 
 ---
 
-## 💻 Tech Stack & Applications
+## Tech Stack & Applications
 
 | Component | Software |
 | :--- | :--- |
@@ -18,7 +18,7 @@ My personal configuration files for an Arch Linux desktop environment powered by
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
 .
@@ -27,6 +27,9 @@ My personal configuration files for an Arch Linux desktop environment powered by
 ├── starship/     # Starship prompt configuration (starship.toml)
 ├── waybar/       # Waybar bar layout and CSS styling
 └── .zshrc        # Zsh shell configuration & aliases
+```
+
+## Screenshot 
 
 <p align="center">
   <img src="assets/screenshot.png" alt="App Screenshot" width="600" />
