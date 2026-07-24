@@ -32,5 +32,5 @@ My personal configuration files for an Arch Linux desktop environment powered by
 ## Screenshot 
 
 <p align="center">
-  <img src="assets/screenshot.png" alt="App Screenshot" width="600" />
+  <img src="assets/Screenshot.png" alt="App Screenshot" width="600" />
 </p>
