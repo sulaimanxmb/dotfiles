@@ -27,3 +27,7 @@ My personal configuration files for an Arch Linux desktop environment powered by
 ├── starship/     # Starship prompt configuration (starship.toml)
 ├── waybar/       # Waybar bar layout and CSS styling
 └── .zshrc        # Zsh shell configuration & aliases
+
+<p align="center">
+  <img src="assets/screenshot.png" alt="App Screenshot" width="600" />
+</p>
