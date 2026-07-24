@@ -1,6 +1,7 @@
 add_newline = true
 
 format = """
+$username\
 $directory\
 $git_branch\
 $git_status\
@@ -14,6 +15,11 @@ success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold blue)"
 
+[username]
+style_user = "green bold"
+style_root = "black bold red"
+format = "[$user]($style) in "
+show_always = true
 
 [directory]
 style = "bold cyan"
