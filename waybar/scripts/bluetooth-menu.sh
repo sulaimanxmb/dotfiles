@@ -139,6 +139,7 @@ while true; do
             break
         else
             notify "Connecting to $name..."
+            bluetoothctl trust "$mac" &>/dev/null
             if bluetoothctl connect "$mac"; then
                 notify "Connected to $name!"
             else
