@@ -176,11 +176,12 @@ while true; do
         fi
         
         # Check if saved
-        saved_conn=$(nmcli -g NAME connection show 2>/dev/null | grep -xF "$clean_ssid" | head -n1)
+        saved_conn=$(nmcli -g NAME connection show 2>/dev/null | grep -F "$clean_ssid" | head -n1)
+        saved_conn=$(echo "$saved_conn" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
         
         if [ -n "$saved_conn" ]; then
             notify "Connecting to saved network $clean_ssid..."
-            if nmcli connection up "$clean_ssid"; then
+            if nmcli connection up "$saved_conn"; then
                 notify "Connected to $clean_ssid!"
             else
                 notify "Failed to connect."
