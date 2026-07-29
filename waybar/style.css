@@ -9,9 +9,9 @@
    Box borders, hover backgrounds, and tooltips all derive from this.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-@define-color bar-bg       #051843;
+@define-color bar-bg       rgba(5, 24, 67, 0.4);
 @define-color bar-bg-light #3b4252;
-@define-color bar-border   #051843;
+@define-color bar-border   rgba(5, 24, 67, 0.4);
 @define-color hover-bg     #3b4252;
 @define-color tooltip-bg   #282c34;
 @define-color tooltip-border #282c34;
