@@ -130,22 +130,48 @@ while true; do
         fi
         
         if [[ "$selected" == *"<b>*"* ]] || [[ "$selected" == *"[Connected]"* ]]; then
-            notify "Disconnecting from $name..."
-            if bluetoothctl disconnect "$mac"; then
-                notify "Disconnected from $name"
+            device_opt=$(echo -e "󰂱  Disconnect\n󰆴  Unpair / Forget\n󰜺  Cancel" | rofi -dmenu -i -p "$name" -theme-str "$ROFI_THEME")
+            if [ "$device_opt" = "󰂱  Disconnect" ]; then
+                notify "Disconnecting from $name..."
+                if bluetoothctl disconnect "$mac"; then
+                    notify "Disconnected from $name"
+                else
+                    notify "Failed to disconnect"
+                fi
+                break
+            elif [ "$device_opt" = "󰆴  Unpair / Forget" ]; then
+                notify "Unpairing $name..."
+                if bluetoothctl remove "$mac"; then
+                    notify "Unpaired and forgot $name"
+                else
+                    notify "Failed to unpair $name"
+                fi
+                break
             else
-                notify "Failed to disconnect"
+                continue
             fi
-            break
         else
-            notify "Connecting to $name..."
-            bluetoothctl trust "$mac" &>/dev/null
-            if bluetoothctl connect "$mac"; then
-                notify "Connected to $name!"
+            device_opt=$(echo -e "󰂰  Connect\n󰆴  Unpair / Forget\n󰜺  Cancel" | rofi -dmenu -i -p "$name" -theme-str "$ROFI_THEME")
+            if [ "$device_opt" = "󰂰  Connect" ]; then
+                notify "Connecting to $name..."
+                bluetoothctl trust "$mac" &>/dev/null
+                if bluetoothctl connect "$mac"; then
+                    notify "Connected to $name!"
+                else
+                    notify "Failed to connect to $name"
+                fi
+                break
+            elif [ "$device_opt" = "󰆴  Unpair / Forget" ]; then
+                notify "Unpairing $name..."
+                if bluetoothctl remove "$mac"; then
+                    notify "Unpaired and forgot $name"
+                else
+                    notify "Failed to unpair $name"
+                fi
+                break
             else
-                notify "Failed to connect to $name"
+                continue
             fi
-            break
         fi
     fi
 done
