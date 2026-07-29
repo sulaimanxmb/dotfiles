@@ -35,7 +35,7 @@ configuration {
 
 /* ── Window Layout ───────────────────────────────────────────────────────── */
 window {
-    transparency:               "none";
+    transparency:               "real";
     background-color:           @bg-color;
     text-color:                 @fg-color;
     border:                     @border-thickness;
@@ -64,7 +64,7 @@ inputbar {
     enabled:                    true;
     spacing:                    8px;
     padding:                    10px 14px;
-    background-color:           #3b4252;
+    background-color:           #3b425280;  /* Semi-transparent input background */
     text-color:                 @fg-color;
     border-radius:              6px;
     children:                   [ "prompt", "entry" ];
@@ -143,7 +143,7 @@ message {
 
 textbox {
     padding:                    10px;
-    background-color:           #3b4252;
+    background-color:           #3b425280;  /* Semi-transparent background */
     text-color:                 @fg-color;
     border-radius:              6px;
 }

@@ -17,15 +17,15 @@
     font-name:            "JetBrainsMono Nerd Font 11";
     icon-size-val:        28px;
 
-    /* ── Color Palette (Solid Colors — No Transparency / Blur) ─────────────── */
-    bg-color:             #006ea8;  /* Solid window background */
-    fg-color:             #abb2bf;  /* Regular text */
-    border-color:         #061844;  /* Thin window border */
-    accent-color:         #56b6c2;  /* Highlights & prompt */
-    prompt-color:         #56b6c2;  /* Prompt label text */
-    search-cursor-color:  #56b6c2;  /* Caret color */
-    placeholder-color:    #5c6370;  /* Search placeholder text */
-    selected-bg:          #ffffff;  /* Highlighted row background */
-    selected-fg:          #56b6c2;  /* Highlighted row text */
-    icon-color:           #56b6c2;  /* Icon tint if applicable */
+    /* ── Color Palette (Translucent Glassmorphism) ────────────────────────── */
+    bg-color:             #051843b3;  /* 70% opacity dark navy to match Waybar */
+    fg-color:             #abb2bf;    /* Regular text */
+    border-color:         #56b6c240;  /* Semi-transparent cyan border */
+    accent-color:         #56b6c2;    /* Highlights & prompt */
+    prompt-color:         #56b6c2;    /* Prompt label text */
+    search-cursor-color:  #56b6c2;    /* Caret color */
+    placeholder-color:    #5c6370;    /* Search placeholder text */
+    selected-bg:          #56b6c233;  /* 20% opacity cyan highlights */
+    selected-fg:          #ffffff;    /* White text for selected item */
+    icon-color:           #56b6c2;    /* Icon tint */
 }
