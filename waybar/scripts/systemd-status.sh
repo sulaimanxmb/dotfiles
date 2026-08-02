@@ -22,7 +22,16 @@ if [ "$running" -eq 0 ]; then
     text=""
     class="inactive"
 else
-    text="⚙ $running"
+    names=""
+    for svc_file in "$svc_dir"/*.service; do
+        [ -e "$svc_file" ] || continue
+        base=$(basename "$svc_file")
+        if systemctl --user is-active --quiet "$base"; then
+            [ -n "$names" ] && names+=", "
+            names+="$base"
+        fi
+    done
+    text="⚙ $names"
     class="active"
 fi
 

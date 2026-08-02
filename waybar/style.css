@@ -196,7 +196,7 @@ tooltip label {
 
 /* ⚙ Systemd Services */
 #custom-services {
-  color: #c678dd;
+  color: #ff0000;
 }
 #custom-services.inactive {
   color: #5c6370;
