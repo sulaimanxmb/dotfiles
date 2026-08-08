@@ -20,6 +20,7 @@
   ],
 
   "modules-right": [
+    "custom/power_draw",
     "custom/disk",
     "custom/ram",
     "custom/gpu",
@@ -164,5 +165,12 @@
     "interval": 30,
     "on-click": "~/.config/waybar/scripts/powermenu.sh",
     "on-click-right": "loginctl lock-session"
+  },
+
+  // ── Power Draw Stats ─────────────────────────────────────────────
+  "custom/power_draw": {
+    "exec": "~/.config/waybar/scripts/power-draw.sh",
+    "return-type": "json",
+    "interval": 5
   }
 }
